@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: factory-system
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/factory_db?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: ${DB_PASSWORD:123456}
+  jackson:
+    time-zone: Asia/Shanghai
+    date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 20MB
+
+server:
+  port: 8080
+
+jwt:
+  secret: ${JWT_SECRET:factory_management_system_2026_secure_key_factory_2026}
+  expiration: 7200000
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.factory.entity
+  global-config:
+    db-config:
+      id-type: auto
+
+logging:
+  level:
+    com.factory: debug
+    org.springframework.security: info
+
+invite:
+  boss-god-code: ${BOSS_GOD_CODE:}
+  boss-code-used: false
+
+upload:
+  path: ${UPLOAD_PATH:./uploads}
+  url-prefix: /uploads
+  avatar-max-size: 2097152
+  material-image-max-size: 3145728
